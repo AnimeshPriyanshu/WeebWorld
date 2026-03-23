@@ -1,60 +1,29 @@
-# NomadFlavours
+# AniSearch
 
-## Project Description
+## Description
 
-NomadFlavours is a web application that enables users to explore countries, view real-time weather conditions, and discover food recommendations based on the current weather. The application integrates multiple data sources to provide a unified experience combining travel, climate, and cuisine.
+AniSearch is a web-based application that allows users to search and explore anime using the Jikan API. The application provides key information such as titles, ratings, episodes, and descriptions in a simple and user-friendly interface.
 
----
-## Purpose
+## Features
 
-The purpose of this project is to:
+* Search for anime by name
+* Display anime details including title, image, rating, and episodes
+* View detailed information such as synopsis and genres
+* Clean and responsive user interface
 
-* Provide essential information about countries in a simple interface
-* Display current weather conditions for a selected location
-* Suggest suitable food based on weather conditions
-* Offer an integrated platform for exploring global cuisine
-
----
-## APIs Used
-
-* REST Countries API: Provides country details such as name, capital, population, and flag
-* OpenWeather API: Provides real-time weather data
-* TheMealDB API: Provides information about meals and recipes
-
----
-## Features 
-
-* Search for a country by name
-* Display country information including flag, capital, and population
-* Show current weather including temperature and conditions
-* Display meals related to the selected country
-* Recommend food based on current weather conditions
-
----
-## Planned Features
-
-* Filtering meals by category
-* Sorting countries by population or region
-* Saving favorite countries or meals
-* Improved user interface and user experience
-* Automatic location detection
-
----
 ## Technologies Used
 
 * HTML
 * CSS
 * JavaScript
-* Fetch API
+* Jikan API
 
----
-## How It Works
+## API Used
 
-1. The user enters a country name
-2. The application retrieves:
+* Jikan API (Unofficial MyAnimeList API)
 
-   * Country data from the REST Countries API
-   * Weather data from the OpenWeather API
-   * Meal data from TheMealDB API
-3. Based on the weather conditions, the application suggests appropriate food options
+## Usage
 
+* Enter the name of an anime in the search bar
+* Click the search button
+* Browse the results and click on any anime to view more details
