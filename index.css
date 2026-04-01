@@ -36,6 +36,12 @@ button:hover {
 #results {
     width: 350px;
     margin: 20px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
 }
 
 .card {
