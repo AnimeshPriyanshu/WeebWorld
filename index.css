@@ -40,7 +40,7 @@ button:hover {
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 60px;
 
 }
 
