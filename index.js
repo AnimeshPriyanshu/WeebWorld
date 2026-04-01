@@ -9,7 +9,7 @@ document.getElementById("search").addEventListener("keydown", function (e) {
 async function searchAnime() {
     let query = document.getElementById("search").value
     if (query === "") return
-    let res = await fetch(`https://api.jikan.moe/v4/anime?q=${query}&limit=6`)
+    let res = await fetch(`https://api.jikan.moe/v4/anime?q=${query}`)
     let data = await res.json()
     let results = document.getElementById("results")
     results.innerHTML = ""
