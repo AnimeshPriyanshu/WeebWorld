@@ -33,6 +33,17 @@ button:hover {
     background-color: #3730a3;
 }
 
+.options {
+    margin-top: 10px;
+}
+
+select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
 #results {
     width: 90%;
     max-width: 800px;
