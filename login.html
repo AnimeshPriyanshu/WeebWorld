@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - WeebWorld</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+<div class="navbar">
+    <h1 style="cursor: pointer;" onclick="window.location.href='index.html'">WeebWorld</h1>
+    <div class="nav-buttons">
+        <button id="dark-btn">Dark Mode</button>
+        <button id="signin-btn" onclick="window.location.href='signin.html'">Sign In</button>
+    </div>
+</div>
+
+<div class="auth-container">
+    <h2>Login to WeebWorld</h2>
+    <input type="text" placeholder="Username" id="username"><br>
+    <input type="password" placeholder="Password" id="password"><br>
+    <button id="submit-login">Login</button>
+</div>
+
+<script src="auth.js"></script>
+</body>
+</html>

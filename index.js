@@ -1,8 +1,28 @@
 document.getElementById("btn").addEventListener("click", searchAnime)
 
+let isDarkMode = localStorage.getItem("darkMode") === "true";
+if (isDarkMode) {
+    document.body.classList.add("dark-mode");
+}
+
 document.getElementById("dark-btn").addEventListener("click", function() {
-    document.body.classList.toggle("dark-mode")
+    document.body.classList.toggle("dark-mode");
+    localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
 })
+
+let loginBtn = document.getElementById("login-btn");
+if (loginBtn) {
+    loginBtn.addEventListener("click", function() {
+        window.location.href = "login.html";
+    });
+}
+
+let signinBtn = document.getElementById("signin-btn");
+if (signinBtn) {
+    signinBtn.addEventListener("click", function() {
+        window.location.href = "signin.html";
+    });
+}
 
 document.getElementById("search").addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
