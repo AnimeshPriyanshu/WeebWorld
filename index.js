@@ -1,5 +1,9 @@
 document.getElementById("btn").addEventListener("click", searchAnime)
 
+document.getElementById("dark-btn").addEventListener("click", function() {
+    document.body.classList.toggle("dark-mode")
+})
+
 document.getElementById("search").addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
         searchAnime()
@@ -7,6 +11,8 @@ document.getElementById("search").addEventListener("keydown", function (e) {
 });
 
 var animeList = []
+var currentPage = 1;
+var itemsPerPage = 9;
 
 async function searchAnime() {
     let query = document.getElementById("search").value
@@ -17,6 +23,7 @@ async function searchAnime() {
     animeList = data.data
     document.getElementById("sort").value = "default"
     document.getElementById("rating-filter").value = "0"
+    currentPage = 1;
     showResults(animeList)
 }
 
@@ -50,7 +57,7 @@ function applyFilters() {
             return b.title.localeCompare(a.title)
         })
     }
-
+    currentPage = 1;
     showResults(filtered)
 }
 
@@ -58,8 +65,16 @@ function showResults(list) {
     let results = document.getElementById("results")
     results.innerHTML = ""
 
-    for (let i = 0; i < list.length; i++) {
-        let anime = list[i]
+    let totalPages = Math.ceil(list.length / itemsPerPage);
+    if (totalPages > 0 && currentPage > totalPages) currentPage = totalPages;
+    if (currentPage < 1) currentPage = 1;
+
+    let start = (currentPage - 1) * itemsPerPage;
+    let end = start + itemsPerPage;
+    let currentList = list.slice(start, end);
+
+    for (let i = 0; i < currentList.length; i++) {
+        let anime = currentList[i]
         let div = document.createElement("div")
         div.className = "card"
         div.innerHTML = `
@@ -68,4 +83,45 @@ function showResults(list) {
         `
         results.appendChild(div)
     }
+
+    renderPagination(list.length, totalPages, list);
+}
+
+function renderPagination(totalItems, totalPages, list) {
+    let pagination = document.getElementById("pagination");
+    if (!pagination) return;
+    pagination.innerHTML = "";
+    
+    if (totalItems === 0) return;
+
+    let prevBtn = document.createElement("button");
+    prevBtn.innerHTML = "&#8592; Prev";
+    prevBtn.disabled = currentPage === 1;
+    if (currentPage === 1) prevBtn.style.opacity = "0.5";
+    prevBtn.addEventListener("click", function() {
+        if (currentPage > 1) {
+            currentPage--;
+            showResults(list);
+        }
+    });
+
+    let nextBtn = document.createElement("button");
+    nextBtn.innerHTML = "Next &#8594;";
+    nextBtn.disabled = currentPage === totalPages;
+    if (currentPage === totalPages) nextBtn.style.opacity = "0.5";
+    nextBtn.addEventListener("click", function() {
+        if (currentPage < totalPages) {
+            currentPage++;
+            showResults(list);
+        }
+    });
+
+    let pageInfo = document.createElement("span");
+    pageInfo.innerHTML = " Page " + currentPage + " of " + (totalPages === 0 ? 1 : totalPages) + " ";
+    pageInfo.style.margin = "0 15px";
+    pageInfo.style.fontWeight = "bold";
+
+    pagination.appendChild(prevBtn);
+    pagination.appendChild(pageInfo);
+    pagination.appendChild(nextBtn);
 }
