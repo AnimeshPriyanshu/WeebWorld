@@ -6,11 +6,27 @@ body {
     margin: 0;
 }
 
-h1 {
-    margin: 0;
-    padding: 20px;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: #4f46e5;
+    padding: 10px 20px;
+}
+
+.navbar h1 {
+    margin: 0;
     color: white;
+}
+
+.nav-buttons button {
+    background-color: white;
+    color: #4f46e5;
+    font-weight: bold;
+}
+
+.nav-buttons button:hover {
+    background-color: #e6e6e6;
 }
 
 .search-box {
