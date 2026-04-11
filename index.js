@@ -34,6 +34,26 @@ let animeList = []
 let currentPage = 1;
 let itemsPerPage = 9;
 
+// Pop-up Logic
+function openPop(info) {
+    let pop = document.getElementById("pop-box")
+    document.getElementById("pop-title").innerText = info.title
+    document.getElementById("pop-score").innerText = "Rating: " + info.score + "/10"
+    document.getElementById("pop-text").innerText = info.synopsis || "No description available."
+    pop.classList.remove("hidden")
+}
+
+document.getElementById("close-pop").onclick = function() {
+    document.getElementById("pop-box").classList.add("hidden")
+}
+
+window.onclick = function(event) {
+    let pop = document.getElementById("pop-box")
+    if (event.target == pop) {
+        pop.classList.add("hidden")
+    }
+}
+
 // Home Page Fetching
 async function getTop() {
     let res = await fetch("https://api.jikan.moe/v4/top/anime")
@@ -44,6 +64,7 @@ async function getTop() {
     topData.forEach(item => {
         let box = document.createElement("div")
         box.className = "card"
+        box.onclick = function() { openPop(item) }
         box.innerHTML = `
             <img src="${item.images.jpg.image_url}" alt="${item.title}">
             <p>${item.title}</p>
@@ -61,6 +82,7 @@ async function getNew() {
     newArr.forEach(show => {
         let box = document.createElement("div")
         box.className = "card"
+        box.onclick = function() { openPop(show) }
         box.innerHTML = `
             <img src="${show.images.jpg.image_url}" alt="${show.title}">
             <p>${show.title}</p>
@@ -78,6 +100,7 @@ async function getUp() {
     upData.forEach(up => {
         let box = document.createElement("div")
         box.className = "card"
+        box.onclick = function() { openPop(up) }
         box.innerHTML = `
             <img src="${up.images.jpg.image_url}" alt="${up.title}">
             <p>${up.title}</p>
@@ -98,6 +121,7 @@ async function searchAnime() {
     animeList = data.data
     document.getElementById("sort").value = "default"
     document.getElementById("rating-filter").value = "0"
+    document.getElementById("genre-filter").value = "all"
     currentPage = 1;
     showResults(animeList)
 }
@@ -110,9 +134,23 @@ document.getElementById("rating-filter").addEventListener("change", function () 
     applyFilters()
 })
 
+document.getElementById("genre-filter").addEventListener("change", function () {
+    applyFilters()
+})
+
 function applyFilters() {
     let filtered = animeList.slice()
 
+    // Genre Filter
+    let selectedGenre = document.getElementById("genre-filter").value
+    if (selectedGenre !== "all") {
+        filtered = filtered.filter(item => {
+            // checking if any genre name matches our selection
+            return item.genres.some(g => g.name === selectedGenre)
+        })
+    }
+
+    // Rating Filter
     let minRating = Number(document.getElementById("rating-filter").value)
     if (minRating > 0) {
         filtered = filtered.filter(function (anim) {
@@ -120,6 +158,7 @@ function applyFilters() {
         })
     }
 
+    // Sorting
     let sortVal = document.getElementById("sort").value
     if (sortVal === "az") {
         filtered.sort(function (a, b) {
@@ -135,6 +174,9 @@ function applyFilters() {
 }
 
 function showResults(list) {
+    let info = document.getElementById("results-info")
+    info.innerText = "Found " + list.length + " anime"
+
     let results = document.getElementById("results")
     results.innerHTML = ""
 
@@ -146,10 +188,10 @@ function showResults(list) {
     let end = start + itemsPerPage;
     let currentList = list.slice(start, end);
 
-    // Using forEach instead of for loop
     currentList.forEach(anime => {
         let div = document.createElement("div")
         div.className = "card"
+        div.onclick = function() { openPop(anime) }
         div.innerHTML = `
             <img src="${anime.images.jpg.image_url}" alt="${anime.title}">
             <p>${anime.title}</p>
