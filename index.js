@@ -30,9 +30,9 @@ document.getElementById("search").addEventListener("keydown", function (e) {
     }
 });
 
-var animeList = []
-var currentPage = 1;
-var itemsPerPage = 9;
+let animeList = []
+let currentPage = 1;
+let itemsPerPage = 9;
 
 async function searchAnime() {
     let query = document.getElementById("search").value
@@ -56,10 +56,10 @@ document.getElementById("rating-filter").addEventListener("change", function () 
 })
 
 function applyFilters() {
-    var filtered = animeList.slice()
+    let filtered = animeList.slice()
 
     // rating filter
-    var minRating = Number(document.getElementById("rating-filter").value)
+    let minRating = Number(document.getElementById("rating-filter").value)
     if (minRating > 0) {
         filtered = filtered.filter(function (anime) {
             return anime.score >= minRating
@@ -67,7 +67,7 @@ function applyFilters() {
     }
 
     // sorting
-    var sortVal = document.getElementById("sort").value
+    let sortVal = document.getElementById("sort").value
     if (sortVal === "az") {
         filtered.sort(function (a, b) {
             return a.title.localeCompare(b.title)

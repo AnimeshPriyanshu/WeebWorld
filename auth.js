@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+    // this checks if the user has enabled dark mode or not(important if site reloaded)
     let isDarkMode = localStorage.getItem("darkMode") === "true";
     if (isDarkMode) {
         document.body.classList.add("dark-mode");
@@ -8,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (darkBtn) {
         darkBtn.addEventListener("click", function() {
             document.body.classList.toggle("dark-mode");
+            // this remembers if the user has enabled dark mode or not(important if site reloaded)
             localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
         });
     }

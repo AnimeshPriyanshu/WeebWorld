@@ -5,14 +5,27 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-<div class="navbar">
-    <h1>WeebWorld</h1>
-    <div class="nav-buttons">
+<nav class="navbar">
+    <div class="logo">WeebWorld</div>
+    <div class="nav-scroll">
         <button id="dark-btn">Dark Mode</button>
         <button id="login-btn">Login</button>
         <button id="signin-btn">Sign In</button>
     </div>
+</nav>
+
+<div id="home-content">
+    <div class="sect">
+        <h2>Top Rated</h2>
+        <div id="top-list" class="grid"></div>
+    </div>
+    
+    <div class="sect">
+        <h2>New This Season</h2>
+        <div id="new-list" class="grid"></div>
+    </div>
 </div>
+
 <div class="search-box">
     <input type="text" id="search" placeholder="Search anime...">
     <button id="btn">Search</button>
