@@ -1,7 +1,7 @@
 document.getElementById("btn").addEventListener("click", searchAnime)
 
-let isDarkMode = localStorage.getItem("darkMode") === "true";
-if (isDarkMode) {
+let isDm = localStorage.getItem("darkMode") === "true";
+if (isDm) {
     document.body.classList.add("dark-mode");
 }
 
