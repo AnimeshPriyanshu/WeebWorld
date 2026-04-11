@@ -142,3 +142,16 @@ body.dark-mode select {
         gap: 10px;
     }
 }
+
+footer {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #f1f1f1;
+    color: #666;
+    font-size: 14px;
+}
+
+body.dark-mode footer {
+    background-color: #222;
+    color: #aaa;
+}

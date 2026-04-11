@@ -69,6 +69,23 @@ async function getNew() {
     })
 }
 
+async function getUp() {
+    let res = await fetch("https://api.jikan.moe/v4/top/anime?filter=upcoming")
+    let data = await res.json()
+    let upData = data.data.slice(0, 6)
+    let upGrid = document.getElementById("up-list")
+    
+    upData.forEach(up => {
+        let box = document.createElement("div")
+        box.className = "card"
+        box.innerHTML = `
+            <img src="${up.images.jpg.image_url}" alt="${up.title}">
+            <p>${up.title}</p>
+        `
+        upGrid.appendChild(box)
+    })
+}
+
 async function searchAnime() {
     let query = document.getElementById("search").value
     if (query === "") return
@@ -185,3 +202,4 @@ function renderPagination(totalItems, totalPages, list) {
 // Start Home Page
 getTop()
 getNew()
+getUp()
