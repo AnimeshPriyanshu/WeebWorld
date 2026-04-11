@@ -9,6 +9,7 @@
     <div class="logo">WeebWorld</div>
     <div class="nav-scroll">
         <button id="dark-btn">Dark Mode</button>
+        <button id="rand-btn">Surprise Me</button>
         <button id="login-btn">Login</button>
         <button id="signin-btn">Sign In</button>
     </div>
@@ -16,17 +17,17 @@
 
 <div id="home-content">
     <div class="sect">
-        <h2>Top Rated</h2>
+        <h2>Most Popular</h2>
         <div id="top-list" class="grid"></div>
     </div>
     
     <div class="sect">
-        <h2>New This Season</h2>
+        <h2>Trending</h2>
         <div id="new-list" class="grid"></div>
     </div>
 
     <div class="sect">
-        <h2>Coming Soon</h2>
+        <h2>Upcoming</h2>
         <div id="up-list" class="grid"></div>
     </div>
 </div>
@@ -61,9 +62,16 @@
 <div id="results"></div>
 <div id="pagination"></div>
 
-<footer>
-    <p>&copy; 2026 WeebWorld. All rights reserved by Animesh.</p>
 </footer>
+
+<div id="pop-box" class="modal hidden">
+    <div class="modal-content">
+        <span id="close-pop">&times;</span>
+        <h2 id="pop-title"></h2>
+        <p id="pop-score"></p>
+        <p id="pop-text"></p>
+    </div>
+</div>
 
 <script src="index.js"></script>
 </body>

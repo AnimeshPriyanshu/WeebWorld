@@ -1,5 +1,7 @@
 document.getElementById("btn").addEventListener("click", searchAnime)
 
+document.getElementById("rand-btn").addEventListener("click", getRandom)
+
 document.getElementById("dark-btn").addEventListener("click", function() {
     document.body.classList.toggle("dark-mode");
     localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
@@ -54,8 +56,15 @@ window.onclick = function(event) {
     }
 }
 
-// Home Page Fetching
-async function getTop() {
+// Random Anime Logic
+async function getRandom() {
+    let res = await fetch("https://api.jikan.moe/v4/random/anime")
+    let data = await res.json()
+    openPop(data.data)
+}
+
+// Home Page Fetching Functions
+async function getPopular() {
     let res = await fetch("https://api.jikan.moe/v4/top/anime")
     let data = await res.json()
     let topData = data.data.slice(0, 6)
@@ -73,7 +82,7 @@ async function getTop() {
     })
 }
 
-async function getNew() {
+async function getTrending() {
     let res = await fetch("https://api.jikan.moe/v4/seasons/now")
     let data = await res.json()
     let newArr = data.data.slice(0, 6)
@@ -91,7 +100,7 @@ async function getNew() {
     })
 }
 
-async function getUp() {
+async function getUpcoming() {
     let res = await fetch("https://api.jikan.moe/v4/top/anime?filter=upcoming")
     let data = await res.json()
     let upData = data.data.slice(0, 6)
@@ -242,6 +251,6 @@ function renderPagination(totalItems, totalPages, list) {
 }
 
 // Start Home Page
-getTop()
-getNew()
-getUp()
+getPopular()
+getTrending()
+getUpcoming()

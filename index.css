@@ -22,17 +22,24 @@ body {
     letter-spacing: 1px;
 }
 
-.nav-buttons button {
+.nav-scroll button {
     background: white;
     color: #4f46e5;
     margin-left: 10px;
     padding: 8px 14px;
     border-radius: 20px;
     font-weight: bold;
+    border: none;
+    cursor: pointer;
     transition: 0.3s;
 }
 
-.nav-buttons button:hover {
+#rand-btn {
+    background: #facc15;
+    color: #4c1d95;
+}
+
+.nav-scroll button:hover {
     transform: scale(1.05);
     background: #f3f3f3;
 }
@@ -136,6 +143,46 @@ body.dark-mode input,
 body.dark-mode select {
     background: #333;
     color: white;
+}
+
+    }
+}
+
+/* Modal / Pop-up Styling */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    text-align: left;
+}
+
+#close-pop {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 25px;
+    cursor: pointer;
+    color: #333;
+}
+
+.hidden {
+    display: none;
 }
 
 @media (max-width: 600px) {
