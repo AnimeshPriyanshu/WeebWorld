@@ -1,14 +1,14 @@
 document.getElementById("btn").addEventListener("click", searchAnime)
 
-let isDm = localStorage.getItem("darkMode") === "true";
-if (isDm) {
-    document.body.classList.add("dark-mode");
-}
-
 document.getElementById("dark-btn").addEventListener("click", function() {
     document.body.classList.toggle("dark-mode");
     localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
 })
+
+let isDm = localStorage.getItem("darkMode") === "true";
+if (isDm) {
+    document.body.classList.add("dark-mode");
+}
 
 let loginBtn = document.getElementById("login-btn");
 if (loginBtn) {
@@ -34,9 +34,47 @@ let animeList = []
 let currentPage = 1;
 let itemsPerPage = 9;
 
+// Home Page Fetching
+async function getTop() {
+    let res = await fetch("https://api.jikan.moe/v4/top/anime")
+    let data = await res.json()
+    let topData = data.data.slice(0, 6)
+    let topGrid = document.getElementById("top-list")
+    
+    topData.forEach(item => {
+        let box = document.createElement("div")
+        box.className = "card"
+        box.innerHTML = `
+            <img src="${item.images.jpg.image_url}" alt="${item.title}">
+            <p>${item.title}</p>
+        `
+        topGrid.appendChild(box)
+    })
+}
+
+async function getNew() {
+    let res = await fetch("https://api.jikan.moe/v4/seasons/now")
+    let data = await res.json()
+    let newArr = data.data.slice(0, 6)
+    let newGrid = document.getElementById("new-list")
+    
+    newArr.forEach(show => {
+        let box = document.createElement("div")
+        box.className = "card"
+        box.innerHTML = `
+            <img src="${show.images.jpg.image_url}" alt="${show.title}">
+            <p>${show.title}</p>
+        `
+        newGrid.appendChild(box)
+    })
+}
+
 async function searchAnime() {
     let query = document.getElementById("search").value
     if (query === "") return
+
+    // Hide Home Content
+    document.getElementById("home-content").classList.add("hidden")
 
     let res = await fetch("https://api.jikan.moe/v4/anime?q=" + query)
     let data = await res.json()
@@ -58,15 +96,13 @@ document.getElementById("rating-filter").addEventListener("change", function () 
 function applyFilters() {
     let filtered = animeList.slice()
 
-    // rating filter
     let minRating = Number(document.getElementById("rating-filter").value)
     if (minRating > 0) {
-        filtered = filtered.filter(function (anime) {
-            return anime.score >= minRating
+        filtered = filtered.filter(function (anim) {
+            return anim.score >= minRating
         })
     }
 
-    // sorting
     let sortVal = document.getElementById("sort").value
     if (sortVal === "az") {
         filtered.sort(function (a, b) {
@@ -93,8 +129,8 @@ function showResults(list) {
     let end = start + itemsPerPage;
     let currentList = list.slice(start, end);
 
-    for (let i = 0; i < currentList.length; i++) {
-        let anime = currentList[i]
+    // Using forEach instead of for loop
+    currentList.forEach(anime => {
         let div = document.createElement("div")
         div.className = "card"
         div.innerHTML = `
@@ -102,7 +138,7 @@ function showResults(list) {
             <p>${anime.title}</p>
         `
         results.appendChild(div)
-    }
+    })
 
     renderPagination(list.length, totalPages, list);
 }
@@ -145,3 +181,7 @@ function renderPagination(totalItems, totalPages, list) {
     pagination.appendChild(pageInfo);
     pagination.appendChild(nextBtn);
 }
+
+// Start Home Page
+getTop()
+getNew()
