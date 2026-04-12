@@ -119,6 +119,12 @@ select {
     gap: 20px;
 }
 
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+}
+
 .card {
     background: white;
     border-radius: 15px;
@@ -139,8 +145,8 @@ select {
 }
 
 .card p {
-    padding: 10px;
-    font-size: 14px;
+    padding: 8px;
+    font-size: 13px;
     font-weight: bold;
 }
 
