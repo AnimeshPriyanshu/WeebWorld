@@ -91,12 +91,8 @@ button:hover {
     padding-right: 20px;
 }
 
-body.dark-mode .sect {
-    border-right: 2px solid #a78bfa; /* Keep lighter purple for dark mode visibility */
-}
-
 .sect:last-child {
-    border-right: none;
+    border-right: none !important; /* Use !important to override dark mode specificity */
     padding-right: 0;
 }
 
@@ -106,6 +102,15 @@ body.dark-mode .sect {
     border-bottom: 2px solid #4f46e5;
     padding-bottom: 5px;
     margin-bottom: 15px;
+}
+
+body.dark-mode .sect {
+    border-right-color: #a78bfa;
+}
+
+body.dark-mode .sect h2 {
+    color: #a78bfa;
+    border-bottom-color: #a78bfa;
 }
 
 select {
@@ -218,7 +223,7 @@ body.dark-mode select {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 @media (max-width: 800px) {

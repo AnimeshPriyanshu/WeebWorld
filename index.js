@@ -32,6 +32,17 @@ document.getElementById("search").addEventListener("keydown", function (e) {
     }
 });
 
+document.getElementById("search").addEventListener("input", function() {
+    let query = this.value
+    if (query === "") {
+        // Show Home and Hide Results
+        document.getElementById("home-content").classList.remove("hidden")
+        document.getElementById("results").innerHTML = ""
+        document.getElementById("results-info").innerText = ""
+        document.getElementById("pagination").innerHTML = ""
+    }
+})
+
 let animeList = []
 let currentPage = 1;
 let itemsPerPage = 9;
@@ -122,17 +133,27 @@ async function searchAnime() {
     let query = document.getElementById("search").value
     if (query === "") return
 
-    // Hide Home Content
+    // Hide Home and show searching status
     document.getElementById("home-content").classList.add("hidden")
+    document.getElementById("results-info").innerText = "Searching..."
+    document.getElementById("results").innerHTML = ""
+    document.getElementById("pagination").innerHTML = ""
 
-    let res = await fetch("https://api.jikan.moe/v4/anime?q=" + query)
-    let data = await res.json()
-    animeList = data.data
-    document.getElementById("sort").value = "default"
-    document.getElementById("rating-filter").value = "0"
-    document.getElementById("genre-filter").value = "all"
-    currentPage = 1;
-    showResults(animeList)
+    try {
+        let res = await fetch("https://api.jikan.moe/v4/anime?q=" + query)
+        if (!res.ok) throw new Error("API Error")
+        
+        let data = await res.json()
+        animeList = data.data
+        document.getElementById("sort").value = "default"
+        document.getElementById("rating-filter").value = "0"
+        document.getElementById("genre-filter").value = "all"
+        currentPage = 1;
+        showResults(animeList)
+    } catch (err) {
+        document.getElementById("results-info").innerText = "Error: API is busy. Please try again later."
+        console.error(err)
+    }
 }
 
 document.getElementById("sort").addEventListener("change", function () {
