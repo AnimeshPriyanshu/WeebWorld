@@ -47,7 +47,7 @@ document.getElementById("search").addEventListener("input", function() {
 
 let animeList = []
 let currentPage = 1;
-let itemsPerPage = 9;
+let itemsPerPage = 12;
 
 // Pop-up Logic
 function openPop(info) {
