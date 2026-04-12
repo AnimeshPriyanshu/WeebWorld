@@ -30,3 +30,57 @@ body.dark-mode .auth-container h2 {
     width: 100%;
     margin-top: 10px;
 }
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-buttons button {
+    margin-left: 0;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 14px 16px;
+        gap: 10px;
+    }
+
+    .navbar h1 {
+        font-size: 20px;
+    }
+
+    .nav-buttons {
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .nav-buttons button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .auth-container {
+        width: 85%;
+        max-width: 320px;
+        padding: 25px 20px;
+        margin: 40px auto;
+    }
+
+    .auth-container h2 {
+        font-size: 18px;
+        margin-bottom: 18px;
+    }
+
+    .auth-container input {
+        width: 88%;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .auth-container button {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
