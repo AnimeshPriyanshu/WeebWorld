@@ -69,9 +69,31 @@ window.onclick = function(event) {
 
 // Random Anime Logic
 async function getRandom() {
-    let res = await fetch("https://api.jikan.moe/v4/random/anime")
-    let data = await res.json()
-    openPop(data.data)
+    try {
+        // Show status so user knows it's working
+        document.getElementById("results-info").innerText = "Finding a surprise..."
+        
+        let res = await fetch("https://api.jikan.moe/v4/random/anime")
+        
+        if (res.ok) {
+            // Success! Use the random data
+            let data = await res.json()
+            openPop(data.data)
+            document.getElementById("results-info").innerText = ""
+        } else {
+            // Fallback: Random API is busy, so pick from the most stable 'TOP' list
+            console.log("Random API busy, using top-anime fallback...")
+            let fallbackRes = await fetch("https://api.jikan.moe/v4/top/anime")
+            let fallbackData = await fallbackRes.json()
+            let randomIdx = Math.floor(Math.random() * fallbackData.data.length)
+            openPop(fallbackData.data[randomIdx])
+            document.getElementById("results-info").innerText = ""
+        }
+    } catch (err) {
+        // Absolute last resort if everything fails
+        document.getElementById("results-info").innerText = "Error: API is very busy. Try again!"
+        console.error(err)
+    }
 }
 
 // Home Page Fetching Functions
