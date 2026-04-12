@@ -54,7 +54,31 @@ function openPop(info) {
     let pop = document.getElementById("pop-box")
     document.getElementById("pop-img").src = info.images.jpg.image_url
     document.getElementById("pop-title").innerText = info.title
-    document.getElementById("pop-score").innerText = "Rating: " + info.score + "/10"
+    document.getElementById("pop-score").innerText = "Score: " + (info.score || "N/A") + "/10"
+    document.getElementById("pop-type").innerText = "Type: " + (info.type || "N/A")
+    document.getElementById("pop-episodes").innerText = "Episodes: " + (info.episodes || "N/A")
+    document.getElementById("pop-status").innerText = "Status: " + (info.status || "N/A")
+    document.getElementById("pop-aired").innerText = "Aired: " + (info.aired ? info.aired.string : "N/A")
+
+    let season = info.season || ""
+    let year = info.year || ""
+    let premiered = season && year ? season.charAt(0).toUpperCase() + season.slice(1) + " " + year : "N/A"
+    document.getElementById("pop-premiered").innerText = "Premiered: " + premiered
+
+    let producers = info.producers ? info.producers.map(function(p) { return p.name }).join(", ") : "N/A"
+    document.getElementById("pop-producers").innerText = "Producers: " + producers
+
+    let studios = info.studios ? info.studios.map(function(s) { return s.name }).join(", ") : "N/A"
+    document.getElementById("pop-studios").innerText = "Studios: " + studios
+
+    let genres = info.genres ? info.genres.map(function(g) { return g.name }).join(", ") : "N/A"
+    document.getElementById("pop-genres").innerText = "Genres: " + genres
+
+    let themes = info.themes ? info.themes.map(function(t) { return t.name }).join(", ") : "N/A"
+    document.getElementById("pop-themes").innerText = "Themes: " + themes
+
+    document.getElementById("pop-duration").innerText = "Duration: " + (info.duration || "N/A")
+    document.getElementById("pop-rating").innerText = "Rating: " + (info.rating || "N/A")
     document.getElementById("pop-text").innerText = info.synopsis || "No description available."
     pop.classList.remove("hidden")
 }
