@@ -298,3 +298,5 @@ function renderPagination(totalItems, totalPages, list) {
 getPopular()
 getTrending()
 getUpcoming()
+
+// added a fallback function if database is busy to get the one from 
