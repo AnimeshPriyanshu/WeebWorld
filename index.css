@@ -75,6 +75,28 @@ button:hover {
     margin-top: 20px;
 }
 
+#home-content {
+    width: 95%;
+    max-width: 1200px;
+    margin: 60px auto;
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+}
+
+.sect {
+    flex: 1;
+    text-align: left;
+}
+
+.sect h2 {
+    font-size: 1.2rem;
+    color: #4f46e5;
+    border-bottom: 2px solid #4f46e5;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
 select {
     padding: 10px;
     border-radius: 20px;
@@ -112,8 +134,8 @@ select {
 
 .card img {
     width: 100%;
-    height: 250px;
-    object-fit: cover;
+    height: auto;
+    display: block;
 }
 
 .card p {
@@ -145,10 +167,7 @@ body.dark-mode select {
     color: white;
 }
 
-    }
-}
 
-/* Modal / Pop-up Styling */
 .modal {
     position: fixed;
     top: 0;
@@ -183,6 +202,12 @@ body.dark-mode select {
 
 .hidden {
     display: none;
+}
+
+@media (max-width: 800px) {
+    #home-content {
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 600px) {
