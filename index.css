@@ -189,6 +189,18 @@ body.dark-mode select {
     color: white;
 }
 
+body.dark-mode .modal-content {
+    background: #2a2a40;
+}
+
+body.dark-mode .pop-details {
+    color: #eee;
+}
+
+body.dark-mode #close-pop {
+    color: #eee;
+}
+
 
 .modal {
     position: fixed;
@@ -205,12 +217,29 @@ body.dark-mode select {
 
 .modal-content {
     background: white;
-    padding: 20px;
+    padding: 25px;
     border-radius: 15px;
-    max-width: 500px;
+    max-width: 700px; /* Increased for landscape */
     width: 90%;
     position: relative;
     text-align: left;
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+#pop-img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.pop-details {
+    flex: 1;
+    color: #333; /* Always dark text so it's visible on white modal */
 }
 
 #close-pop {
@@ -233,6 +262,17 @@ body.dark-mode select {
 }
 
 @media (max-width: 600px) {
+    .modal-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #pop-img {
+        max-width: 200px;
+        margin-bottom: 20px;
+    }
+
     input {
         width: 80%;
     }

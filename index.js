@@ -50,6 +50,7 @@ let itemsPerPage = 9;
 // Pop-up Logic
 function openPop(info) {
     let pop = document.getElementById("pop-box")
+    document.getElementById("pop-img").src = info.images.jpg.image_url
     document.getElementById("pop-title").innerText = info.title
     document.getElementById("pop-score").innerText = "Rating: " + info.score + "/10"
     document.getElementById("pop-text").innerText = info.synopsis || "No description available."
