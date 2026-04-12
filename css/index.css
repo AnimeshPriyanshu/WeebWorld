@@ -10,16 +10,26 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
+    padding: 8px 30px;
     background: linear-gradient(90deg, #4f46e5, #7c3aed);
     color: white;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.navbar h1 {
-    margin: 0;
-    font-size: 24px;
-    letter-spacing: 1px;
+.logo {
+    height: 38px;
+    width: 38px;
+    border-radius: 50%;
+    display: block;
+    object-fit: cover;
+    background: white;
+    padding: 4px;
+    border: 2px solid #e0e0e0;
+}
+
+body.dark-mode .logo {
+    background: #2a2a40;
+    border-color: #555;
 }
 
 .nav-scroll button {
@@ -263,7 +273,8 @@ body.dark-mode #close-pop {
     }
 
     .logo {
-        font-size: 20px;
+        height: 40px;
+        width: 40px;
     }
 
     .nav-scroll {

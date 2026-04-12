@@ -5,11 +5,13 @@ document.getElementById("rand-btn").addEventListener("click", getRandom)
 document.getElementById("dark-btn").addEventListener("click", function() {
     document.body.classList.toggle("dark-mode");
     localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+    this.innerText = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
 })
 
 let isDm = localStorage.getItem("darkMode") === "true";
 if (isDm) {
     document.body.classList.add("dark-mode");
+    document.getElementById("dark-btn").innerText = "☀️";
 }
 
 let loginBtn = document.getElementById("login-btn");

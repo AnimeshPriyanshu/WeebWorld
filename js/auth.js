@@ -7,10 +7,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let darkBtn = document.getElementById("dark-btn");
     if (darkBtn) {
+        if (isDarkMode) {
+            darkBtn.innerText = "☀️";
+        }
         darkBtn.addEventListener("click", function() {
             document.body.classList.toggle("dark-mode");
-            // this remembers if the user has enabled dark mode or not(important if site reloaded)
             localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+            darkBtn.innerText = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
         });
     }
 
