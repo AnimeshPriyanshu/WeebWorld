@@ -87,6 +87,17 @@ button:hover {
 .sect {
     flex: 1;
     text-align: left;
+    border-right: 2px solid #4f46e5; /* Match heading color */
+    padding-right: 20px;
+}
+
+body.dark-mode .sect {
+    border-right: 2px solid #a78bfa; /* Keep lighter purple for dark mode visibility */
+}
+
+.sect:last-child {
+    border-right: none;
+    padding-right: 0;
 }
 
 .sect h2 {
