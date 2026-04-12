@@ -239,7 +239,7 @@ body.dark-mode #close-pop {
 
 .pop-details {
     flex: 1;
-    color: #333; /* Always dark text so it's visible on white modal */
+    color: #333; 
 }
 
 #close-pop {
@@ -256,7 +256,6 @@ body.dark-mode #close-pop {
 }
 
 @media (max-width: 768px) {
-    /* ---- Navbar ---- */
     .navbar {
         flex-direction: column;
         padding: 14px 16px;
@@ -282,7 +281,7 @@ body.dark-mode #close-pop {
         white-space: nowrap;
     }
 
-    /* ---- Search ---- */
+
     .search-box {
         margin-top: 18px;
         padding: 0 16px;
@@ -306,7 +305,7 @@ body.dark-mode #close-pop {
         flex-shrink: 0;
     }
 
-    /* ---- Filters ---- */
+
     .options {
         display: flex;
         flex-wrap: wrap;
@@ -323,7 +322,7 @@ body.dark-mode #close-pop {
         font-size: 12px;
     }
 
-    /* ---- Home Sections ---- */
+
     #home-content {
         flex-direction: column;
         margin: 24px auto;
@@ -350,7 +349,7 @@ body.dark-mode #close-pop {
         font-size: 1.1rem;
     }
 
-    /* ---- Card Grids ---- */
+
     .grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
@@ -379,7 +378,7 @@ body.dark-mode #close-pop {
         overflow: hidden;
     }
 
-    /* ---- Modal ---- */
+
     .modal-content {
         flex-direction: column;
         align-items: center;
@@ -405,7 +404,7 @@ body.dark-mode #close-pop {
         line-height: 1.5;
     }
 
-    /* ---- Pagination ---- */
+
     #pagination {
         margin: 15px auto;
     }
@@ -415,7 +414,7 @@ body.dark-mode #close-pop {
         font-size: 12px;
     }
 
-    /* ---- Footer ---- */
+
     footer {
         margin-top: 30px;
         padding: 16px;
@@ -423,7 +422,7 @@ body.dark-mode #close-pop {
     }
 }
 
-/* ---- Extra-small screens (below 400px) ---- */
+
 @media (max-width: 400px) {
     .nav-scroll button {
         padding: 5px 9px;
